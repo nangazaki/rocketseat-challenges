@@ -1,3 +1,1 @@
-## :computer:
-
-# Rocketseat Challenges
+# :computer: Rocketseat Challenges
