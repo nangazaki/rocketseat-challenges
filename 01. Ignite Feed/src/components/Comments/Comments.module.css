@@ -60,8 +60,13 @@
   transition: background-color .1s;
 }
 
-.wrapper button[type=submit]:hover {
+.wrapper button[type=submit]:not(:disabled):hover {
   background: var(--green-300);
+}
+
+.wrapper button[type=submit]:disabled {
+  opacity: .7;
+  cursor: not-allowed;
 }
 
 .comment-wrapper {
@@ -112,6 +117,12 @@
   font-size: .75rem;
   line-height: 1.6;
   font-weight: 400;
+
+  transition: background .5s ease;
+}
+
+.delete-comment:hover {
+  color: brown;
 }
 
 .comment-content header svg {

@@ -11,7 +11,7 @@ export function Comments() {
         name: 'Otoniel Emanuel',
         avatarUrl: 'https://github.com/euotiniel.png',
       },
-      comment: 'Gostei',
+      comment: 'Excelente post, foi muito útil! 👏🏿',
       publishedAt: new Date('2023-06-18 19:00:00'),
       claps: 1,
     }
@@ -52,6 +52,7 @@ export function Comments() {
   return (
     <div className={styles.wrapper}>
       <span>Deixe seu feedback!</span>
+
       <form onSubmit={handleCreateNewComment}>
         <textarea
           name='comment'
@@ -59,10 +60,14 @@ export function Comments() {
           onChange={handleNewCommentText}
           placeholder='Escreva um comentário...'
         />
+
         <footer>
-          <button type='submit'>Comentar</button>
+          <button type='submit' disabled={newCommentText.length === 0}>
+            Comentar
+          </button>
         </footer>
       </form>
+
       {comments.map((comment) => {
         return (
           <Comment

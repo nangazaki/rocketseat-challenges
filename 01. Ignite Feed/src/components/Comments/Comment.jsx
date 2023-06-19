@@ -33,8 +33,8 @@ export function Comment({ id, author, publishedAt, comment, claps, onDeleteComme
               <strong>{author.name}</strong>
               <span>{publishedDateRelativeToNow}</span>
             </div>
-            <span onClick={handleDeleteComment} title='Deletar comentário'>
-              <Trash size={22} color='#8D8D99' />
+            <span className={styles['delete-comment']} onClick={handleDeleteComment} aria-label='Deletar comentário'>
+              <Trash size={22} />
             </span>
           </header>
           <div>
