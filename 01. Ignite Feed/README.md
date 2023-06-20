@@ -1,1 +1,0 @@
-# :computer: Rocketseat Challenges
