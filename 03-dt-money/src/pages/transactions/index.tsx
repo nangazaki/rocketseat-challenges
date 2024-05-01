@@ -1,14 +1,21 @@
+import { useContext } from "react";
+import { TransactionsContext } from "../../context/TransactionsContext";
+
 import { Header } from "../../components/Header";
-import { SearchForm } from "../../components/SearchForm";
 import { Summary } from "../../components/Summary";
-import { formatCurrency } from "../../helpers/currency.helper";
+import { SearchForm } from "../../components/SearchForm";
 import {
   PriceHightLight,
   TransactionContainer,
   TransactionTable,
 } from "./styles";
 
+import { formatCurrency } from "../../helpers/currency.helper";
+import { dateFormatter } from "../../helpers/dateFormater.helper";
+
 export function Transactions() {
+  const { transactions } = useContext(TransactionsContext);
+
   return (
     <div>
       <Header />
@@ -19,66 +26,21 @@ export function Transactions() {
 
         <TransactionTable>
           <tbody>
-            <tr>
-              <td>Desenvolvimento de um sistema</td>
-              <td>
-                <PriceHightLight variant="income">
-                  {formatCurrency(800000)}
-                </PriceHightLight>
-              </td>
-              <td>Venda</td>
-              <td>01/05/2024</td>
-            </tr>
-            <tr>
-              <td>Desenvolvimento de um sistema</td>
-              <td>
-                <PriceHightLight variant="income">
-                  {formatCurrency(800000)}
-                </PriceHightLight>
-              </td>
-              <td>Venda</td>
-              <td>01/05/2024</td>
-            </tr>
-            <tr>
-              <td>Desenvolvimento de um sistema</td>
-              <td>
-                <PriceHightLight variant="income">
-                  {formatCurrency(800000)}
-                </PriceHightLight>
-              </td>
-              <td>Venda</td>
-              <td>01/05/2024</td>
-            </tr>
-            <tr>
-              <td>Desenvolvimento de um sistema</td>
-              <td>
-                <PriceHightLight variant="outcome">
-                  {formatCurrency(800000)}
-                </PriceHightLight>
-              </td>
-              <td>Venda</td>
-              <td>01/05/2024</td>
-            </tr>
-            <tr>
-              <td>Desenvolvimento de um sistema</td>
-              <td>
-                <PriceHightLight variant="outcome">
-                  {formatCurrency(800000)}
-                </PriceHightLight>
-              </td>
-              <td>Venda</td>
-              <td>01/05/2024</td>
-            </tr>
-            <tr>
-              <td>Desenvolvimento de um sistema</td>
-              <td>
-                <PriceHightLight variant="income">
-                  {formatCurrency(800000)}
-                </PriceHightLight>
-              </td>
-              <td>Venda</td>
-              <td>01/05/2024</td>
-            </tr>
+            {transactions.map((transaction) => {
+              return (
+                <tr key={transaction.id}>
+                  <td>{transaction.description}</td>
+                  <td>
+                    <PriceHightLight variant={transaction.type}>
+                      {transaction.type === "outcome" && "- "}
+                      {formatCurrency(transaction.price)}
+                    </PriceHightLight>
+                  </td>
+                  <td>{transaction.category}</td>
+                  <td>{dateFormatter.format(new Date(transaction.createdAt))}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </TransactionTable>
       </TransactionContainer>
