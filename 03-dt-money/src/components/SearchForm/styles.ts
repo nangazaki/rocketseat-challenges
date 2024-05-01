@@ -5,8 +5,6 @@ export const SearchFormContainer = styled.form`
   align-items: center;
   gap: 1rem;
 
-  margin-bottom: 1rem;
-
   input {
     flex: 1;
 
@@ -38,9 +36,10 @@ export const SearchFormContainer = styled.form`
     gap: 1rem;
 
     &:hover {
-      background: ${(props) => props.theme["green-300"]};
+      background: ${(props) => props.theme["green-500"]};
+      border-color: ${(props) => props.theme["green-500"]};
       color: ${(props) => props.theme.white};
-      transition: background 0.2s;
+      transition: background-color 0.2s, color 0.2s, border-color 0.2s ;
     }
   }
 `;
