@@ -5,6 +5,7 @@ export const defaultTheme = {
 
   'red-300': '#7A1921',
   'red-500': '#AB222E',
+  'red-700': '#AC2320',
 
   'yellow-500': '#FBA94C',
 
