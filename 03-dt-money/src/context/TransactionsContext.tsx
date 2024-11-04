@@ -1,7 +1,22 @@
-import { Children, ReactNode, createContext, useEffect, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
+import { useFetch } from "../lib/axios";
+
+export interface CreateNewTransaction {
+  description: string;
+  price: number;
+  category: string;
+  type: "income" | "outcome";
+  createdAt: string;
+}
 
 interface Transactions {
-  id: string;
+  id: number;
   description: string;
   type: "income" | "outcome";
   price: number;
@@ -11,6 +26,8 @@ interface Transactions {
 
 interface TransactionsContexType {
   transactions: Transactions[];
+  fetchTransactions: (query?: string) => Promise<void>;
+  postTransactions: (data: CreateNewTransaction) => Promise<void>;
 }
 
 export const TransactionsContext = createContext({} as TransactionsContexType);
@@ -22,19 +39,34 @@ interface TransactionsProviderProps {
 export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const [transactions, setTransaction] = useState<Transactions[]>([]);
 
-  async function getTransactions() {
-    const response = await fetch("http://localhost:3000/transactions");
-    const data = await response.json();
+  const fetchTransactions = useCallback(async (query?: string) => {
+    const { data } = await useFetch.get<Transactions[]>("/transactions", {
+      params: {
+        _sort: "-createdAt",
+        q: query,
+      },
+    });
 
     setTransaction(data);
-  }
+  }, []);
+
+  const postTransactions = useCallback(async (data: CreateNewTransaction) => {
+    const { data: transaction } = await useFetch.post<Transactions>(
+      "/transactions",
+      data
+    );
+
+    setTransaction((state) => [transaction, ...state]);
+  }, []);
 
   useEffect(() => {
-    getTransactions();
+    fetchTransactions();
   }, []);
 
   return (
-    <TransactionsContext.Provider value={{ transactions }}>
+    <TransactionsContext.Provider
+      value={{ transactions, fetchTransactions, postTransactions }}
+    >
       {children}
     </TransactionsContext.Provider>
   );

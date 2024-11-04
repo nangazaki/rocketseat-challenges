@@ -3,11 +3,11 @@ import * as Dialog from "@radix-ui/react-dialog";
 import * as RadioGroup from "@radix-ui/react-radio-group";
 
 export const Overlay = styled(Dialog.Overlay)`
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 100vh;
   inset: 0;
-  background: #000000aa;
+  background: #00000075;
 `;
 
 export const Content = styled(Dialog.Content)`

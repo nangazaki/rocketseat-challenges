@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const SummaryContainer = styled.section`
+export const SummaryContainer = styled.div`
   width: 100%;
   max-width: 1120px;
   margin: 0 auto;
@@ -41,3 +41,4 @@ export const SummaryCard = styled.div<SummaryCardProps>`
       background: ${props.theme["green-700"]};
     `}
 `;
+

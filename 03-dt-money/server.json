@@ -1,7 +1,7 @@
 {
   "transactions": [
     {
-      "id": "6cb2e5fe-a36f-4c3a-bac6-3f5f60aaa064",
+      "id": 1,
       "description": "Desenvolvimento de um site",
       "type": "income",
       "category": "Venda",
@@ -9,28 +9,12 @@
       "createdAt": "2024-05-01T18:34:58.610Z"
     },
     {
-      "id": "6cb2e5fe-a36f-4c3a-bac6-3f5f60aaa053",
+      "id": 2,
       "description": "Mujopão",
       "type": "outcome",
       "category": "Alimentação",
       "price": 3000,
       "createdAt": "2024-05-01T18:34:58.610Z"
-    },
-    {
-      "id": "6cb2e5fe-a56f-4c3a-bac6-3f5f60aaa053",
-      "description": "Pagamento da internet",
-      "type": "outcome",
-      "category": "Despesas",
-      "price": 24600,
-      "createdAt": "2024-04-16T18:34:58.610Z"
-    },
-    {
-      "id": "6cb2e5ae-a56f-4c3a-bac6-3f5f60aaa053",
-      "description": "Serviço de UI Designer",
-      "type": "income",
-      "category": "Venda",
-      "price": 100000,
-      "createdAt": "2024-04-16T18:34:58.610Z"
     }
   ]
 }
